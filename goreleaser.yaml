@@ -15,7 +15,7 @@ builds:
       - CGO_ENABLED=0
     hooks:
       post:
-        - go run cbz_generator.go --output output.cbz --pages 5
+        - go run . --output output.cbz --pages 5
         - mv output.cbz dist/output.cbz
 
 archives:
