@@ -1,0 +1,61 @@
+project_name: cbz-generator
+builds:
+  - id: cbz_generator
+    main: .
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+      - 386
+    ldflags:
+      - -s -w
+    env:
+      - CGO_ENABLED=0
+    artifacts:
+      - name_templates:
+          - "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    hooks:
+      post:
+        - go run cbz_generator.go --output output.cbz --pages 5
+        - mv output.cbz dist/output.cbz
+
+archives:
+  - id: release_archive
+    name_template: "{{ .ProjectName }}_{{ .Version }}"
+    format: tar.gz
+    files:
+      - dist/output.cbz
+      - LICENSE
+      - README.md
+    wrap_in_directory: true
+
+checksum:
+  name_template: "checksums.txt"
+
+release:
+  github:
+    owner: ${{ github.repository_owner }}
+    name: ${{ github.event.repository.name }}
+    assets:
+      - "dist/output.cbz"
+      - "dist/*.tar.gz"
+      - "dist/checksums.txt"
+
+nfpms:
+  - vendor: Ubels Software Development
+    homepage: https://github.com/arran4/
+    maintainer: Arran Ubels <arran@ubels.com.au>
+    description: NA
+    license: Private
+    formats:
+      - apk
+      - deb
+      - rpm
+      - termux.deb
+      - archlinux
+    release: 1
+    section: default
+    priority: extra
