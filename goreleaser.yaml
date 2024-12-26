@@ -13,9 +13,10 @@ builds:
       - 386
     env:
       - CGO_ENABLED=0
-    hooks:
-      post:
-        - go run . -output dist/output.cbz --pages 5
+before:
+  hooks:
+    - mkdir -p dist/
+    - go run . -output dist/output.cbz --pages 5
 
 archives:
   - id: release_archive
