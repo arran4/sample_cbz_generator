@@ -19,13 +19,8 @@ before:
 
 archives:
   - id: release_archive
-    name_template: "{{ .ProjectName }}_{{ .Version }}"
-    format: tar.gz
     files:
       - output.cbz
-      - LICENSE
-      - README.md
-    wrap_in_directory: true
 
 checksum:
   name_template: "checksums.txt"
