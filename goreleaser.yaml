@@ -11,13 +11,8 @@ builds:
       - amd64
       - arm64
       - 386
-    ldflags:
-      - -s -w
     env:
       - CGO_ENABLED=0
-    artifacts:
-      - name_templates:
-          - "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     hooks:
       post:
         - go run cbz_generator.go --output output.cbz --pages 5
