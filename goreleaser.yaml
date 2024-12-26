@@ -19,7 +19,7 @@ before:
 
 release:
   - extra_files:
-      - output.cbz
+      - glob: ./output.cbz
 
 checksum:
   name_template: "checksums.txt"
