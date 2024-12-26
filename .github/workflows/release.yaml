@@ -5,6 +5,9 @@ on:
     tags:
       - "v*.*.*"
 
+permissions:
+  contents: write
+
 jobs:
   release:
     name: Release
@@ -25,12 +28,10 @@ jobs:
       - name: Run tests
         run: go test ./...
 
-      - name: Set up Goreleaser
-        uses: goreleaser/goreleaser-action@v4
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6
         with:
-          version: latest
-
-      - name: Release
-        run: goreleaser release --clean
+          distribution: goreleaser
+          args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
