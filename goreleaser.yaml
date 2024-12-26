@@ -15,15 +15,14 @@ builds:
       - CGO_ENABLED=0
 before:
   hooks:
-    - mkdir -p dist/
-    - go run . -output dist/output.cbz --pages 5
+    - go run .
 
 archives:
   - id: release_archive
     name_template: "{{ .ProjectName }}_{{ .Version }}"
     format: tar.gz
     files:
-      - dist/output.cbz
+      - output.cbz
       - LICENSE
       - README.md
     wrap_in_directory: true
