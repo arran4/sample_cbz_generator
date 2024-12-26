@@ -1,4 +1,5 @@
 project_name: cbz-generator
+version: 2
 builds:
   - id: cbz_generator
     main: .
