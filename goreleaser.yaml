@@ -17,9 +17,8 @@ before:
   hooks:
     - go run .
 
-archives:
-  - id: release_archive
-    files:
+release:
+  - extra_files:
       - output.cbz
 
 checksum:
