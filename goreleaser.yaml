@@ -36,15 +36,6 @@ archives:
 checksum:
   name_template: "checksums.txt"
 
-release:
-  github:
-    owner: ${{ github.repository_owner }}
-    name: ${{ github.event.repository.name }}
-    assets:
-      - "dist/output.cbz"
-      - "dist/*.tar.gz"
-      - "dist/checksums.txt"
-
 nfpms:
   - vendor: Ubels Software Development
     homepage: https://github.com/arran4/
